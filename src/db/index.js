@@ -312,8 +312,8 @@ const convertToJoin = (tableName, args) => {
 };
 
 const convertQueryObj = (schema, tableName, args) => {
-  const attrObj = { ...schema };
-  let result = '';
+  let attrObj = { ...schema };
+
   if (!args) return '*';
 
   if (args.include) {
@@ -321,14 +321,14 @@ const convertQueryObj = (schema, tableName, args) => {
   }
 
   if (args.exclude) {
-    result = modelExclude(attrObj, args.exclude);
+    attrObj = modelExclude(attrObj, args.exclude);
   }
 
   if (args.rename) {
-    return modelRename(result, tableName, args.rename);
+    return modelRename(attrObj, tableName, args.rename);
   }
 
-  return Object.keys(result).join(', ') || '*';
+  return Object.keys(attrObj).join(', ');
 };
 
 const createModel = schemaObj => {

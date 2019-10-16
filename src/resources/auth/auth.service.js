@@ -14,6 +14,7 @@ export default class AuthService {
 
   static createOne(user) {
     user.id = uuid.v4();
+
     return User.createOne(user, {
       asColumns: {
         firstName: 'first_name',
@@ -23,7 +24,7 @@ export default class AuthService {
         first_name: 'firstName',
         last_name: 'lastName'
       },
-      exclude: ['password']
+      exclude: ['password', 'email']
     });
   }
 

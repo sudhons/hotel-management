@@ -23,7 +23,8 @@ const user = {
     unique: true
   },
   password: {
-    type: SchemaTypes.TEXT,
+    type: SchemaTypes.STRING,
+    maxLength: 100,
     nullable: false
   }
 };
