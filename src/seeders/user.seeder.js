@@ -1,5 +1,5 @@
 const uuid = require('uuid');
-const { hashPassword } = require('../utils');
+const { hashPassword } = require('../utils/helpers');
 
 const userSeeder = [
   {

@@ -1,5 +1,10 @@
 import UserService from './auth.service';
-import { hashPassword, validatePassword, generateAuthToken } from '../../utils';
+import {
+  hashPassword,
+  validatePassword,
+  generateAuthToken
+} from '../../utils/helpers';
+import { created, notFound, success } from '../../utils/jsonResponse';
 
 export default class User {
   static async register(req, res) {
@@ -11,29 +16,20 @@ export default class User {
 
     const token = generateAuthToken(user);
 
-    return res.status(201).json({
-      status: 'success',
-      token
-    });
+    return created({ token, res });
   }
 
   static async login(req, res) {
     const { email, password } = req.body;
+
     const user = await UserService.findByEmail(email);
 
-    if (!user) {
-      return res.status(400).json({
-        status: 'failed',
-        message: 'Invalid Credentials'
-      });
-    }
-
-    const isValidUser = validatePassword(password, user.password);
+    const isValidUser = user && validatePassword(password, user.password);
 
     if (!isValidUser) {
-      return res.status(400).json({
-        status: 'failed',
-        message: 'Invalid Credentials'
+      return notFound({
+        message: 'Invalid Credentials',
+        res
       });
     }
 
@@ -45,9 +41,6 @@ export default class User {
       lastName
     });
 
-    return res.status(201).json({
-      status: 'success',
-      token
-    });
+    return success({ token, res });
   }
 }
