@@ -1,7 +1,7 @@
-const uuid = require('uuid');
-const { hashPassword } = require('../utils/helpers');
+import uuid from 'uuid';
+import { hashPassword } from '../utils/helpers';
 
-const userSeeder = [
+export const user = [
   {
     id: uuid.v4(),
     first_name: 'standard1',
@@ -24,7 +24,3 @@ const userSeeder = [
     email: 'standard3@stan.com'
   }
 ];
-
-module.exports = {
-  userSeeder
-};

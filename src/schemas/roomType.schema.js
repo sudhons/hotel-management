@@ -1,6 +1,6 @@
-const { SchemaTypes } = require('../db/SchemaTypes');
+import { SchemaTypes } from '../db/SchemaTypes';
 
-const roomType = {
+export const roomType = {
   id: {
     type: SchemaTypes.UUID,
     primary: true,
@@ -15,8 +15,4 @@ const roomType = {
     unique: true,
     nullable: false
   }
-};
-
-module.exports = {
-  roomType
 };

@@ -1,11 +1,11 @@
-const { discountPrice } = require('./discountPrice.schema');
-const { price } = require('./price.schema');
-const { room } = require('./room.schema');
-const { roomCapacity } = require('./roomCapacity.schema');
-const { roomType } = require('./roomType.schema');
-const { user } = require('./user.schema');
+import { discountPrice } from './discountPrice.schema';
+import { price } from './price.schema';
+import { room } from './room.schema';
+import { roomCapacity } from './roomCapacity.schema';
+import { roomType } from './roomType.schema';
+import { user } from './user.schema';
 
-module.exports = {
+export default {
   user,
   roomType,
   roomCapacity,
@@ -19,18 +19,16 @@ module.exports = {
 
 // const basename = path.basename(__filename);
 
-// export default fs
+// const files = fs
 //   .readdirSync(__dirname)
 //   .filter(
 //     file =>
 //       file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
 //   )
-//   .reduce(async (schemas, file) => {
-//     const [schemaName, schema] = await Object.entries(
-//       (await import(path.join(__dirname, file))).default
-//     )[0];
+//   .map(file => require(path.join(__dirname, file)));
 
-//     schemas[schemaName] = schema;
-//     console.log(schemas);
-//     return schemas;
-//   }, {});
+// export default files.reduceRight((result, next) => {
+//   const [key, value] = Object.entries(next)[0];
+//   result[key] = value;
+//   return result;
+// }, {});

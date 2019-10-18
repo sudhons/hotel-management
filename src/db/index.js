@@ -1,11 +1,8 @@
-const { Client } = require('pg');
-const dotenv = require('dotenv');
-const { SchemaTypes } = require('./SchemaTypes');
-const schemas = require('../schemas');
-const seeders = require('../seeders');
-// const uuid = require('uuid');
-
-dotenv.config();
+import('dotenv/config');
+import { Client } from 'pg';
+import { SchemaTypes } from './SchemaTypes';
+import schemas from '../schemas';
+import seeders from '../seeders';
 
 const pool = new Client({
   connectionString: process.env.DATABASE_URL

@@ -1,6 +1,6 @@
-const { roomCapacities } = require('./seederIds');
+import { roomCapacities } from './seederIds';
 
-const roomCapacitySeeder = [
+export const roomCapacity = [
   {
     id: roomCapacities[0],
     name: 'single'
@@ -14,7 +14,3 @@ const roomCapacitySeeder = [
     name: 'family'
   }
 ];
-
-module.exports = {
-  roomCapacitySeeder
-};

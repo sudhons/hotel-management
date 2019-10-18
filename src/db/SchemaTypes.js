@@ -1,4 +1,4 @@
-const SchemaTypes = {
+export const SchemaTypes = {
   UUID: 'UUID',
   BOOLEAN: 'BOOLEAN',
   STRING: 'VARCHAR',
@@ -7,8 +7,4 @@ const SchemaTypes = {
   FLOAT: 'FLOAT',
   TIMESTAMP: 'TIMESTAMP',
   TEXT: 'TEXT'
-};
-
-module.exports = {
-  SchemaTypes
 };

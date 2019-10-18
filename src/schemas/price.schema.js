@@ -1,6 +1,6 @@
-const { SchemaTypes } = require('../db/SchemaTypes');
+import { SchemaTypes } from '../db/SchemaTypes';
 
-const price = {
+export const price = {
   id: {
     type: SchemaTypes.UUID,
     primary: true,
@@ -31,8 +31,4 @@ const price = {
   // constraints: {
   //   room_capacity_room_type: ['room_capacity', 'room_type']
   // }
-};
-
-module.exports = {
-  price
 };

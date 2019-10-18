@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node src/index.js",
-    "db:migrate": " node src/db/ createTables",
-    "db:migrate:undo": "node src/db/ dropTables",
-    "db:seeders": "node src/db/ seedTables"
+    "db:migrate": "./node_modules/.bin/babel-node src/db/ createTables",
+    "db:migrate:undo": "./node_modules/.bin/babel-node src/db/ dropTables",
+    "db:seeders": "./node_modules/.bin/babel-node src/db/ seedTables"
   },
   "keywords": [],
   "author": "",

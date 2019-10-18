@@ -1,6 +1,6 @@
-const { SchemaTypes } = require('../db/SchemaTypes');
+import { SchemaTypes } from '../db/SchemaTypes';
 
-const user = {
+export const user = {
   id: {
     type: SchemaTypes.UUID,
     primary: true,
@@ -27,8 +27,4 @@ const user = {
     maxLength: 100,
     nullable: false
   }
-};
-
-module.exports = {
-  user
 };

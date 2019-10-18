@@ -1,6 +1,6 @@
-const { SchemaTypes } = require('../db/SchemaTypes');
+import { SchemaTypes } from '../db/SchemaTypes';
 
-const room = {
+export const room = {
   id: {
     type: SchemaTypes.UUID,
     primary: true,
@@ -34,8 +34,4 @@ const room = {
     type: SchemaTypes.BOOLEAN,
     nullable: false
   }
-};
-
-module.exports = {
-  room
 };

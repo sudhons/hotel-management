@@ -1,4 +1,4 @@
-const uuid = require('uuid');
+import uuid from 'uuid';
 
 module.exports = {
   roomCapacities: [uuid.v4(), uuid.v4(), uuid.v4()],

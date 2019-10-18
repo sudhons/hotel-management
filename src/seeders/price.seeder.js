@@ -1,7 +1,7 @@
-const uuid = require('uuid');
-const { roomCapacities, roomTypes } = require('./seederIds');
+import uuid from 'uuid';
+import { roomCapacities, roomTypes } from './seederIds';
 
-const priceSeeder = [
+export const price = [
   {
     id: uuid.v4(),
     price: 5000,
@@ -39,7 +39,3 @@ const priceSeeder = [
     room_capacity: roomCapacities[2]
   }
 ];
-
-module.exports = {
-  priceSeeder
-};
