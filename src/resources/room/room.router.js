@@ -6,13 +6,13 @@ const router = Router();
 
 router
   .route('/')
-  .get(RoomController.getRooms)
+  .get(asyncHandler(RoomController.getRooms))
   .post(asyncHandler(RoomController.createARoom));
 
 router
   .route('/:id')
-  .get(RoomController.getRoomById)
-  .put(RoomController.updateRoomById)
-  .delete(RoomController.deleteRoomById);
+  .get(asyncHandler(RoomController.getRoomById))
+  .put(asyncHandler(RoomController.updateRoomById))
+  .delete(asyncHandler(RoomController.deleteRoomById));
 
 export default router;
