@@ -53,7 +53,16 @@ export default class RoomService {
 
   static createOne(room) {
     room.id = uuid.v4();
-    return Room.createOne(room);
+    return Room.createOne(room, {
+      asColumns: {
+        roomType: 'room_type',
+        roomCapacity: 'room_capacity'
+      },
+      rename: {
+        room_type: 'roomType',
+        room_capacity: 'roomCapacity'
+      }
+    });
   }
 
   static deleteById(id) {

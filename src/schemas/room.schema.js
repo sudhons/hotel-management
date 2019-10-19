@@ -32,6 +32,10 @@ export const room = {
   },
   availability: {
     type: SchemaTypes.BOOLEAN,
-    nullable: false
+    nullable: false,
+    default: false
+  },
+  constraints: {
+    [SchemaTypes.UNIQUE]: ['room_capacity', 'room_type']
   }
 };

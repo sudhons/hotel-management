@@ -99,7 +99,16 @@ const convertSchemaTypes = typeObj => {
   return result;
 };
 
-const createTable = (name, schema) => {
+const createTable = (name, n_schema) => {
+  const schema = { ...n_schema };
+  delete schema.constraints;
+  let constraints = '';
+
+  if (n_schema.constraints) {
+    const [key, value] = Object.entries(n_schema.constraints)[0];
+    constraints = `, ${key} (${value.join(', ')})`;
+  }
+
   const columnsWithProperties = Object.keys(schema)
     .reduce((tot, column) => {
       return `${tot}, ${column} ${convertSchemaTypes(schema[column])}`;
@@ -110,6 +119,7 @@ const createTable = (name, schema) => {
   CREATE TABLE IF NOT EXISTS
     ${name}(
       ${columnsWithProperties}
+      ${constraints}
     );
   `;
 

@@ -35,5 +35,8 @@ export const discountPrice = {
   number_of_rooms: {
     type: SchemaTypes.INT,
     nullable: false
+  },
+  constraints: {
+    [SchemaTypes.UNIQUE]: ['room_capacity', 'room_type']
   }
 };

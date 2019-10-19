@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import RoomController from './room.controller';
+import asyncHandler from '../../middlewares/asyncHandler';
 
 const router = Router();
 
 router
   .route('/')
   .get(RoomController.getRooms)
-  .post(RoomController.createARoom);
+  .post(asyncHandler(RoomController.createARoom));
 
 router
   .route('/:id')

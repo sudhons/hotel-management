@@ -6,5 +6,6 @@ export const SchemaTypes = {
   INT: 'INT',
   FLOAT: 'FLOAT',
   TIMESTAMP: 'TIMESTAMP',
+  UNIQUE: 'UNIQUE',
   TEXT: 'TEXT'
 };

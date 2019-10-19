@@ -27,8 +27,8 @@ export const price = {
       columnName: 'id',
       onDelete: SchemaTypes.CASCADE
     }
+  },
+  constraints: {
+    [SchemaTypes.UNIQUE]: ['room_capacity', 'room_type']
   }
-  // constraints: {
-  //   room_capacity_room_type: ['room_capacity', 'room_type']
-  // }
 };
