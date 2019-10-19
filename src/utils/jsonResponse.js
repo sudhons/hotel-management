@@ -1,4 +1,4 @@
-import * as StatusCodes from '../constants/statusCodes';
+import * as StatusCodes from './statusCodes';
 
 const jsonResponse = (status, data) => {
   return data.res.status(status).json({

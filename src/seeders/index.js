@@ -1,4 +1,4 @@
-// const { discountPriceSeeder } = require('./discountPrice.seeder');
+// import { discountPrice } from './discountPrice.seeder';
 import { price } from './price.seeder';
 import { room } from './room.seeder';
 import { roomCapacity } from './roomCapacity.seeder';
@@ -9,7 +9,7 @@ export default {
   roomType,
   roomCapacity,
   price,
+  // discountPrice,
   room,
   user
-  // discount_prices: discountPriceSeeder
 };
