@@ -62,6 +62,11 @@ export default class Validator {
     return this.validates;
   }
 
+  static optional() {
+    this.validates.unshift(value => (value ? 'continue' : 'stop'));
+    return this.validates;
+  }
+
   static regex() {}
 
   static integer() {}
@@ -74,14 +79,18 @@ export default class Validator {
 }
 
 const validateHelper = (schema, body, name) => {
-  return schema.reduce(
-    (result, validationFunc) => {
-      const value = validationFunc(body, name);
-      typeof value !== 'boolean' && result[name].push(value);
-      return result;
-    },
-    { [name]: [] }
-  );
+  const result = { [name]: [] };
+
+  for (let index = 0; index < schema.length; index++) {
+    const value = schema[index](body, name);
+
+    if (value === 'continue') continue;
+    if (value === 'stop') return result;
+
+    value !== true && result[name].push(value);
+  }
+
+  return result;
 };
 
 export const validate = (body, schema) => {
