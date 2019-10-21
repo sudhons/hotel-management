@@ -113,10 +113,7 @@ const convertQueryObj = (schema, tableName, args) => {
 
 export default class Model {
   constructor(dbConnection, tableSchema, tableName) {
-    const schema = { ...tableSchema };
-    delete schema.constraints;
-
-    this.schema = schema;
+    this.schema = tableSchema.columns;
     this.tableName = tableName;
     this.dbConnection = dbConnection;
   }

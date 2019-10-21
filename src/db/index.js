@@ -5,6 +5,8 @@ import schemas from '../schemas';
 import seeders from '../seeders';
 import Model from './Model';
 
+let alterString = '';
+
 const pool = new Client({
   connectionString: process.env.DATABASE_URL
 });
@@ -56,7 +58,8 @@ const convertToTableName = schemaName => {
     });
 };
 
-const convertSchemaTypes = typeObj => {
+// const convertSchemaTypes = typeObj => {
+const convertSchemaTypes = (typeObj, tableName, columnName) => {
   const { type, maxLength, reference, primary, nullable, unique } = typeObj;
   let result = type;
 
@@ -76,16 +79,24 @@ const convertSchemaTypes = typeObj => {
     result = `${result} ${'UNIQUE'}`;
   }
 
+  // if (reference) {
+  //   const { refSchema, refColumn, onDelete } = reference;
+
+  //   result = `${result} ${'REFERENCES'} ${convertToTableName(
+  //     refSchema
+  //   )}(${refColumn})`;
+
+  //   if (onDelete) {
+  //     result = `${result} ON DELETE ${onDelete}`;
+  //   }
+  // }
+
   if (reference) {
-    const { schemaName, columnName, onDelete } = reference;
+    const { refSchema, onDelete } = reference;
 
-    result = `${result} ${'REFERENCES'} ${convertToTableName(
-      schemaName
-    )}(${columnName})`;
-
-    if (onDelete) {
-      result = `${result} ON DELETE ${onDelete}`;
-    }
+    alterString += `ALTER TABLE ${tableName} ADD FOREIGN KEY (${columnName}) REFERENCES ${convertToTableName(
+      refSchema
+    )} ${onDelete ? `ON DELETE ${onDelete};` : ';'}`;
   }
 
   if (typeObj.default !== undefined) {
@@ -99,19 +110,26 @@ const convertSchemaTypes = typeObj => {
   return result;
 };
 
-const createTable = (name, n_schema) => {
-  const schema = { ...n_schema };
-  delete schema.constraints;
-  let constraints = '';
+const createTable = (name, { columns, constraints }) => {
+  let constraintString = '';
 
-  if (n_schema.constraints) {
-    const [key, value] = Object.entries(n_schema.constraints)[0];
-    constraints = `, ${key} (${value.join(', ')})`;
+  if (constraints) {
+    const [key, value] = Object.entries(constraints)[0];
+    constraintString = `, ${key} (${value.join(', ')})`;
   }
 
-  const columnsWithProperties = Object.keys(schema)
-    .reduce((tot, column) => {
-      return `${tot}, ${column} ${convertSchemaTypes(schema[column])}`;
+  // const columnsWithProperties = Object.keys(columns)
+  //   .reduce((tot, column) => {
+  //     return `${tot}, ${column} ${convertSchemaTypes(columns[column])}`;
+  //   }, '')
+  //   .slice(2);
+  const columnsWithProperties = Object.keys(columns)
+    .reduce((tot, columnName) => {
+      return `${tot}, ${columnName} ${convertSchemaTypes(
+        columns[columnName],
+        name,
+        columnName
+      )}`;
     }, '')
     .slice(2);
 
@@ -119,7 +137,7 @@ const createTable = (name, n_schema) => {
   CREATE TABLE IF NOT EXISTS
     ${name}(
       ${columnsWithProperties}
-      ${constraints}
+      ${constraintString}
     );
   `;
 
@@ -165,7 +183,8 @@ export const createTables = () => {
     return `${tot}${createTable(convertToTableName(key), schemas[key])}`;
   }, '');
 
-  makeQuery(queryString);
+  // makeQuery(queryString);
+  makeQuery(queryString + alterString);
 };
 
 export const createModel = schemaObj => {
