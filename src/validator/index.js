@@ -13,6 +13,17 @@ export default class Validator {
     return this;
   }
 
+  static uuidv4() {
+    this.validates.push((value, name) => {
+      return (
+        /^[a-f0-9]{8}-[a-f0-9]{4}-[4][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(
+          value
+        ) || `(${name}) = (${value}) should be a uuid version 4`
+      );
+    });
+    return this;
+  }
+
   static alpha() {
     this.validates.push((value = '', name) => {
       return (

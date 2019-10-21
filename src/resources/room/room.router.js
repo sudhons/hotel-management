@@ -1,13 +1,15 @@
 import { Router } from 'express';
 import RoomController from './room.controller';
 import asyncHandler from '../../middlewares/asyncHandler';
+import { roomSchema } from './room.validator';
+import { validatorHandler } from '../../middlewares/validatorHandler';
 
 const router = Router();
 
 router
   .route('/')
   .get(asyncHandler(RoomController.getRooms))
-  .post(asyncHandler(RoomController.createARoom));
+  .post(validatorHandler(roomSchema), asyncHandler(RoomController.createARoom));
 
 router
   .route('/:id')
