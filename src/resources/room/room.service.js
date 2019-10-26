@@ -1,7 +1,7 @@
 import uuid from 'uuid';
 import Models from '../../models';
 
-const { Room, RoomType, RoomCapacity } = Models;
+const { Room, RoomType } = Models;
 
 export default class RoomService {
   static findAll() {
@@ -14,8 +14,7 @@ export default class RoomService {
     // });
     return Room.findAll({
       rename: {
-        room_type: 'roomType',
-        room_capacity: 'roomCapacity'
+        room_type: 'roomType'
       }
     });
     // return Room.findAll({
@@ -27,11 +26,6 @@ export default class RoomService {
     //     //   alias: 'Availability'
     //     // }
     //     allColumns: true,
-    //     room_capacity: {
-    //       model: RoomCapacity,
-    //       through: 'id',
-    //       alias: 'roomCapacity'
-    //     },
     //     room_type: {
     //       model: RoomType,
     //       through: 'id',
@@ -45,8 +39,7 @@ export default class RoomService {
   static findById(id) {
     return Room.findByPK(id, {
       rename: {
-        room_type: 'roomType',
-        room_capacity: 'roomCapacity'
+        room_type: 'roomType'
       }
     });
   }
@@ -55,12 +48,10 @@ export default class RoomService {
     room.id = uuid.v4();
     return Room.createOne(room, {
       asColumns: {
-        roomType: 'room_type',
-        roomCapacity: 'room_capacity'
+        roomType: 'room_type'
       },
       rename: {
-        room_type: 'roomType',
-        room_capacity: 'roomCapacity'
+        room_type: 'roomType'
       }
     });
   }

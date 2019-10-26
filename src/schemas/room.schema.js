@@ -22,15 +22,6 @@ export const room = {
         onDelete: SchemaTypes.CASCADE
       }
     },
-    room_capacity: {
-      type: SchemaTypes.UUID,
-      nullable: false,
-      reference: {
-        refSchema: 'roomCapacity',
-        refColumn: 'id',
-        onDelete: SchemaTypes.CASCADE
-      }
-    },
     availability: {
       type: SchemaTypes.BOOLEAN,
       nullable: false,

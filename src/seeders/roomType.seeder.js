@@ -7,6 +7,14 @@ export const roomType = [
   },
   {
     id: roomTypes[1],
-    name: 'deluxe'
+    name: 'double'
+  },
+  {
+    id: roomTypes[2],
+    name: 'triple'
+  },
+  {
+    id: roomTypes[3],
+    name: 'quad'
   }
 ];

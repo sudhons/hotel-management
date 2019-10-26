@@ -20,15 +20,6 @@ export const discountPrice = {
         onDelete: SchemaTypes.CASCADE
       }
     },
-    room_capacity: {
-      type: SchemaTypes.UUID,
-      nullable: false,
-      reference: {
-        refSchema: 'roomCapacity',
-        refColumn: 'id',
-        onDelete: SchemaTypes.CASCADE
-      }
-    },
     till_date: {
       type: SchemaTypes.TIMESTAMP,
       nullable: false
@@ -40,6 +31,6 @@ export const discountPrice = {
   },
 
   constraints: {
-    [SchemaTypes.UNIQUE]: ['room_capacity', 'room_type']
+    [SchemaTypes.UNIQUE]: ['room_type']
   }
 };

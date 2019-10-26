@@ -7,8 +7,7 @@ export default class RoomPriceService {
   static findAll() {
     return RoomPrice.findAll({
       rename: {
-        room_type: 'roomType',
-        room_capacity: 'roomCapacity'
+        room_type: 'roomType'
       }
     });
   }

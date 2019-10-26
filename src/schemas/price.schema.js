@@ -19,19 +19,10 @@ export const price = {
         refColumn: 'id',
         onDelete: SchemaTypes.CASCADE
       }
-    },
-    room_capacity: {
-      type: SchemaTypes.UUID,
-      nullable: false,
-      reference: {
-        refSchema: 'roomCapacity',
-        refColumn: 'id',
-        onDelete: SchemaTypes.CASCADE
-      }
     }
   },
 
   constraints: {
-    [SchemaTypes.UNIQUE]: ['room_capacity', 'room_type']
+    [SchemaTypes.UNIQUE]: ['room_type']
   }
 };
