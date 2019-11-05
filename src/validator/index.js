@@ -82,7 +82,23 @@ export default class Validator {
 
   static integer() {}
 
-  static float() {}
+  static float() {
+    this.validates.push((value, name) => {
+      return (
+        Number.isFinite(value) || `(${name}) = (${value}) should be a float`
+      );
+    });
+    return this;
+  }
+
+  static positive() {
+    this.validates.push((value, name) => {
+      return (
+        value > 0 || `(${name}) = (${value}) should be a positive float number`
+      );
+    });
+    return this;
+  }
 
   static minValue(value) {}
 

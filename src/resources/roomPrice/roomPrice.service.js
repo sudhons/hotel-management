@@ -18,7 +18,14 @@ export default class RoomPriceService {
 
   static createOne(roomPrice) {
     roomPrice.id = uuid.v4();
-    return RoomPrice.createOne(roomPrice);
+    return RoomPrice.createOne(roomPrice, {
+      rename: {
+        room_type: 'roomType'
+      },
+      asColumns: {
+        roomType: 'room_type'
+      }
+    });
   }
 
   static deleteById(id) {
