@@ -1,7 +1,5 @@
 import uuid from 'uuid';
-import Models from '../../models';
-
-const { RoomType, RoomPrice } = Models;
+import { RoomType } from '../../models';
 
 export default class RoomTypeService {
   static findAll() {

@@ -1,7 +1,5 @@
 import uuid from 'uuid';
-import Models from '../../models';
-
-const { User } = Models;
+import { User } from '../../models';
 
 export default class AuthService {
   // static findAll() {

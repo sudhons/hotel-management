@@ -187,14 +187,12 @@ export const createTables = () => {
   makeQuery(queryString + alterString);
 };
 
-export const createModel = schemaObj => {
-  const [schemaName, schema] = Object.entries(schemaObj)[0];
-  const name = convertToTableName(schemaName);
-  const queryString = createTable(name, schema);
+export const createModel = (tableName, schema) => {
+  const queryString = createTable(tableName, schema);
 
   pool.query(queryString);
 
-  return new Model(pool, schema, name);
+  return new Model(pool, schema, tableName);
 };
 
 import('make-runnable');
